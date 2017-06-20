@@ -1,0 +1,195 @@
+﻿@using Shop.Models
+@{
+    ViewBag.Title = "Creat";
+    List<CategoryI> listcateI = ViewBag.cateIList as List<CategoryI>;
+}
+<link href="~/Content/FH/button.min.css" rel="stylesheet" />
+<link href="~/Content/TJ/buttons.css" rel="stylesheet" />
+<link href="~/Content/SR/set2.css" rel="stylesheet" />
+<link href="~/Content/XL/xl.css" rel="stylesheet" />
+<script src="~/Scripts/TJ/classie.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+@using (Ajax.BeginForm("CreatAdd", new { id = 1, type = 1 }, new AjaxOptions() { HttpMethod = "Post", UpdateTargetId = "result" }, new { id = "from" }))
+{
+    <div class="form-horizontal">
+        <div class="form-group" style="margin-left:10%;">
+            <div class="col-md-10" style="width:45.5%;">
+                <span class="input input--manami">
+                    <input name="Name" class="input__field input__field--manami" type="text" id="input-32" autocomplete="off" />
+                    <label class="input__label input__label--manami" for="input-32">
+                        <span class="input__label-content input__label-content--manami">商品名称</span>
+                    </label>
+                </span>                
+            </div>
+            <br />
+        </div>
+
+        <div class="form-group" style="margin-left:10%;">
+            <div class="col-md-10" style="width:45.5%;">
+                <span class="input input--manami">
+                    <input name="PurPrice" class="input__field input__field--manami" type="text" id="input-32" autocomplete="off" />
+                    <label class="input__label input__label--manami" for="input-32">
+                        <span class="input__label-content input__label-content--manami">进价</span>
+                    </label>
+                </span>                
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-left:10%;">
+            <div class="col-sm-10" style="width:45.5%;">
+                <span class="input input--manami">
+                    <input name="Price" class="input__field input__field--manami" type="text" id="input-32" autocomplete="off" />
+                    <label class="input__label input__label--manami" for="input-32">
+                        <span class="input__label-content input__label-content--manami">售价</span>
+                    </label>
+                </span>                
+            </div>
+        </div>
+        <div>
+            <div>
+                <label class="col-sm-2 control-label" style="font-size:16px; color:#696969; ">类别I</label>
+                <div class="form-group" style="margin-left:10%; margin-bottom:50px;">
+                    <div class="col-md-10" style="width:45.5%;">
+                        <select name="CategoryI" id="CategoryI" style="width:80%;" class="form-control">
+                            <option value="0">请选择</option>
+                            @foreach (var item in listcateI)
+                            {
+                                <option value="@item.Number">@item.Category</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <label class="col-sm-2 control-label" style="font-size:16px; color:#696969;">类别II</label>
+                <div class="form-group" style="margin-left:10%; margin-bottom:50px;">
+                    <div class="col-md-10" style="width:45.5%;">
+                        <select name="CategoryII" id="CategoryII" style="width:80%;" class="form-control">
+                            <option value="0">请选择</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <label class="col-sm-2 control-label" style="font-size:16px; color:#696969;">供应商</label>
+                <div class="form-group" style="margin-left:10%; margin-bottom:50px;">
+                    <div class="col-md-10" style="width:45.5%;">
+                        <select name="Supplier" id="Supplier" style="width:80%;" class="form-control">
+                            <option value="0">请选择</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var CategoryID;
+                var url;
+                var selectid;
+                var i;
+                $("#CategoryI").change(function () {
+                    //获取类别I的ID
+                    CategoryID = $("#CategoryI").val();
+                    if (CategoryID != 0) {
+                        //获取类别II
+                        selectid = $("#CategoryII");
+                        url = "/Shop/CreateCxcateI/";
+                        debugger;
+                        i = 1;
+                        ajax();
+                    }
+                })
+                $("#CategoryII").change(function () {
+                    //获取类别II的Id
+                    CategoryID = $("#CategoryII").val();
+                    if (CategoryID != 0) {
+                        //获取供应商
+                        selectid = $("#Supplier");
+                        url = "/Shop/CreateCxSupp/";
+                        debugger;
+                        i = 2;
+                        ajax();
+                    }
+                })
+                function ajax() {
+                    $.ajax({
+                        url: url + CategoryID,
+                        type: "post",
+                        dataType: "json",
+                        contentType: "application/json",
+                        success: function (results) {
+                            var myHTML = "";
+                            selectid.html("");   //赋值之前先清空
+                            myHTML = "<option value=" + "0" + ">" + "请选择" + "</option>";   //添加一个头<option>
+                            if (i == 1) {
+                                $.each(results, function (i, data) {
+                                    myHTML += "<option value=" + data.Number + ">" + data.Categoryl + "</option>";
+                                });
+                            }
+                            if (i == 2) {
+                                $.each(results, function (i, data) {
+                                    myHTML += "<option value=" + data.Number + ">" + data.Name + "</option>";
+                                });
+                            }
+                            selectid.append(myHTML);
+                        },
+                        error: function (results) {
+                            alert(results.responseText);
+                        }
+                    });
+                }
+            })
+        </script>
+        <script>
+            (function () {
+                if (!String.prototype.trim) {
+                    (function () {
+                        // Make sure we trim BOM and NBSP
+                        var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+                        String.prototype.trim = function () {
+                            return this.replace(rtrim, '');
+                        };
+                    })();
+                }
+
+                [].slice.call(document.querySelectorAll('input.input__field')).forEach(function (inputEl) {
+                    // in case the input is already filled..
+                    if (inputEl.value.trim() !== '') {
+                        classie.add(inputEl.parentNode, 'input--filled');
+                    }
+
+                    // events:
+                    inputEl.addEventListener('focus', onInputFocus);
+                    inputEl.addEventListener('blur', onInputBlur);
+                });
+
+                function onInputFocus(ev) {
+                    classie.add(ev.target.parentNode, 'input--filled');
+                }
+
+                function onInputBlur(ev) {
+                    if (ev.target.value.trim() === '') {
+                        classie.remove(ev.target.parentNode, 'input--filled');
+                    }
+                }
+            })();
+        </script>
+
+        <div class="form-group" style="margin-left:6%;">
+            <div class="box bg-1">
+                <button class="button button--ujarak button--border-thin button--text-thick">确认添加</button>
+            </div>
+            <div style="margin-top:20px;">
+                <span id="result" style="color:red; font-size:14px;"></span>
+            </div>
+        </div>
+    </div>
+}
+<div class="svg-wrapper" style="margin-bottom:20px; float:right;">
+    <svg height="40" width="150">
+        <rect id="shape" height="40" width="150" />
+        <div id="text">
+            @Html.ActionLink("返回至商品列表", "ListOfGoods", new { @class = "spot" })
+        </div>
+    </svg>
+</div>

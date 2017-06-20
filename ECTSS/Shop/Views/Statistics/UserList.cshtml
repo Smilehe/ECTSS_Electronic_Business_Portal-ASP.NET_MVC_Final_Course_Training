@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "UserList";
+}
+@using Webdiyer.WebControls.Mvc
+@model PagedList<Shop.Models.AUser>
+<link href="~/Content/amazeui.min.css" rel="stylesheet" />
+<link href="~/Content/FH/button.min.css" rel="stylesheet" />
+<div id="articles">
+    @Html.Partial("_UserList", Model)
+</div>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script type="text/javascript">
+$(function () {@{ Ajax.LoadMvcPagerScript(); }});
+</script>

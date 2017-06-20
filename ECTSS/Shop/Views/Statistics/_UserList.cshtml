@@ -1,0 +1,65 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model PagedList<Shop.Models.AUser>
+<link href="~/Content/ActionLink/actionlink.css" rel="stylesheet" />
+<div>
+    <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
+        <thead>
+            <tr class="am-success">
+                <th class="table-check"><input type="checkbox" /></th>
+                <th class="table-id">ID</th>
+                <th class="table-author">用户账号</th>
+                <th class="table-title">用户名称</th>
+                <th class="table-author am-hide-sm-only">访问记录</th>
+                <th width="130px" class="table-set">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><input type="checkbox" /></td>
+                    <td>@Html.DisplayFor(modelItem => item.ID)</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AccNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AccessRecord)
+                    </td>
+                    <td>
+                        <div class="am-btn-toolbar">
+                            <div class="am-btn-group am-btn-group-xs">
+                                @Html.ActionLink("订单详情", "UpdatteUser", new { id = item.ID })
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    @Ajax.Pager(Model, new PagerOptions
+{
+    AutoHide = false,
+    PageIndexParameterName = "id",
+    FirstPageText = "首页",
+    PrevPageText = "上一页",
+    NextPageText = "下一页",
+    LastPageText = "末页",
+    NumericPagerItemCount = 5,
+    ContainerTagName = "ul",
+    CssClass = "pagination",
+    CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>",
+    DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>",
+    PagerItemTemplate = "<li>{0}</li>"
+}, new MvcAjaxOptions
+{
+    UpdateTargetId = "articles",
+})
+</div>
+
+

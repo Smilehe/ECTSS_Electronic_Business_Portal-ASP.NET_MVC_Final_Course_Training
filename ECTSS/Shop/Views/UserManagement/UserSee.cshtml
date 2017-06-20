@@ -1,0 +1,87 @@
+﻿@model Shop.Models.AUser
+
+@{
+    ViewBag.Title = "UserSee";
+}
+<h2>UserSee</h2>
+<link href="~/Content/FH/button.min.css" rel="stylesheet" />
+<link href="~/Content/TJ/buttons.css" rel="stylesheet" />
+<div>
+    <h2 style="margin-left:48%;">详情信息</h2>
+    <div  style="margin-left:20%;">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.AccNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AccNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Nickname)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nickname)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Category)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Category)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Jurisdiction)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Jurisdiction)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.AccessRecord)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AccessRecord)
+            </dd>
+
+        </dl>
+    </div>    
+</div>
+<div class="svg-wrapper" style="margin-bottom:20px;">
+    <svg height="40" width="150">
+        <rect id="shape" height="40" width="150" />
+        <div id="text">
+            @Html.ActionLink("修改信息", "UpdatteUser", new { @class = "spot", id = Model.ID })
+        </div>
+    </svg>
+</div>
+<div class="svg-wrapper" style="margin-bottom:20px; float:right;">
+    <svg height="40" width="150">
+        <rect id="shape" height="40" width="150" />
+        <div id="text">
+            @Html.ActionLink("返回至管理员列表", "Users", new { @class = "spot" })
+        </div>
+    </svg>
+</div>

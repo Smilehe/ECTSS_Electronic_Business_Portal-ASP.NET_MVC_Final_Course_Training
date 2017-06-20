@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "SupplierList";
+}
+@using Webdiyer.WebControls.Mvc
+@model PagedList<Shop.Models.Supplier>
+<link href="~/Content/amazeui.min.css" rel="stylesheet" />
+<link href="~/Content/FH/button.min.css" rel="stylesheet" />
+@using (Html.BeginForm("SupplierList", "Supplier", FormMethod.Get))
+{
+    <div>
+        <div class="svg-wrapper" style="margin-bottom:30px; margin-top:8px; margin-left:10px;">
+            <svg height="40" width="150">
+                <rect id="shape" height="40" width="150" />
+                <div id="text">
+                    @Html.ActionLink("新增供应商", "Create", new { @class = "spot" })
+                </div>
+            </svg>
+        </div>
+        <div style="float:right;margin-top:35px;">
+            <ul class="am-nav am-nav-pills am-topbar-nav admin-header-list">
+                <li class="soso">
+                    <p class="ycfg">
+                        <input name="whname" type="text" value="@ViewData["whname"]" class="am-form-field am-input-sm" placeholder="请输入" style="background-color:#f4f5f5;" />
+                    </p>
+                    <p style="margin-top:-1px;">
+                        <button class="am-btn am-btn-xs am-btn-default am-xiao" style="background-color:#f4f5f5;"><i class="am-icon-search"></i></button>
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+}
+<div id="articles">
+    @Html.Partial("_SupplierList", Model)
+</div>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script type="text/javascript">
+$(function () {@{ Ajax.LoadMvcPagerScript(); }});
+</script>

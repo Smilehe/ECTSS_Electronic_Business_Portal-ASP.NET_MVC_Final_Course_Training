@@ -1,0 +1,41 @@
+﻿@model Shop.Models.AUser
+@{
+    Layout = null;
+    ViewBag.Title = "Login";
+}
+
+<link rel="stylesheet" href="~/Content/amazeui.min.css" />
+<link rel="stylesheet" href="~/Content/admin.css">
+<link rel="stylesheet" href="~/Content/app.css">
+<div class="am-g myapp-login">
+    <div class="myapp-login-logo-block  tpl-login-max">
+        <div class="myapp-login-logo-text">
+            <div class="myapp-login-logo-text">
+                ECTSS<span> Login</span> <i class="am-icon-skyatlas"></i>
+            </div>
+        </div>
+        <div class="login-font">
+            <i>Log In </i> or <span> Sign Up</span>
+        </div>
+        <div class="am-u-sm-10 login-am-center">            
+                <fieldset>        
+                    @using (Ajax.BeginForm("Verification", new { id=1,type=1}, new AjaxOptions() { HttpMethod = "Post",
+                        UpdateTargetId = "result" },new { id = "from", @class = "am-form " }))
+                    {
+                        <div class="am-form-group">
+                            <input type="text" name="accnumber" id="doc-ipt-email-1" placeholder="请输入账号" />
+                            <!-- @Html.TextBox("doc-ipt-email-1","", new {@placeholder = "请输入账号" }) -->
+                        </div>
+                        <div class="am-form-group">   
+                            <input type="password" name="psw" id="doc-ipt-email-1" placeholder="请输入密码" />
+                            <!--@Html.Password("doc-ipt-email-2", "", new {@placeholder = "请输入密码" })-->
+                        </div>
+                        <p style="margin-top:25px;"><button type="submit" class="am-btn am-btn-default">登录</button></p>
+                    }
+                    <span id="result" style="color:red;"></span>                    
+                    @Scripts.Render("~/bundles/jquery")
+                    @Scripts.Render("~/bundles/jqueryajax")
+                </fieldset> 
+            </div>
+        </div>
+    </div>   

@@ -1,0 +1,103 @@
+﻿@model Shop.Models.Shops
+
+@{
+    ViewBag.Title = "See";
+}
+
+<link href="~/Content/FH/button.min.css" rel="stylesheet" />
+<link href="~/Content/TJ/buttons.css" rel="stylesheet" />
+<div>
+    <h2 style="margin-left:48%;">详情信息</h2>
+    <div style="margin-left:20%;">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Number)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Number)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PurPrice)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PurPrice)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SalesVolumes)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SalesVolumes)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CategoryI)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CategoryI)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CategoryII)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CategoryII)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Supplier)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Supplier)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.KeyAttribute)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.KeyAttribute)
+            </dd>
+
+        </dl>
+    </div>    
+</div>
+<div class="svg-wrapper" style="margin-bottom:20px;">
+    <svg height="40" width="150">
+        <rect id="shape" height="40" width="150" />
+        <div id="text">
+            @Html.ActionLink("修改信息", "Updatte", new { @class = "spot", id = Model.ID })
+        </div>
+    </svg>
+</div>
+<div class="svg-wrapper" style="margin-bottom:20px; float:right;">
+    <svg height="40" width="150">
+        <rect id="shape" height="40" width="150" />
+        <div id="text">
+            @Html.ActionLink("返回至管理员列表", "ListOfGoods", new { @class = "spot" })
+        </div>
+    </svg>
+</div>

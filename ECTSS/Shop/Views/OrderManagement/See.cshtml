@@ -1,0 +1,126 @@
+﻿@model Shop.Models.Order
+
+@{
+    ViewBag.Title = "See";
+}
+<link href="~/Content/FH/button.min.css" rel="stylesheet" />
+<link href="~/Content/TJ/buttons.css" rel="stylesheet" />
+<div>
+    <h2 style="margin-left:48%;">订单详情信息</h2>
+    <div style="margin-left:20%;">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Number)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Number)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SoNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SoNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SoNum)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SoNum)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CategoryI)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CategoryI)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CategoryII)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CategoryII)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.BuyerName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.BuyerName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DelAddress)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DelAddress)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SuNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SuNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Total)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Total)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Payment)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Payment)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DelGoods)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DelGoods)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Time)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Time)
+            </dd>
+
+        </dl>
+    </div>
+</div>
+<div class="svg-wrapper" style="margin-bottom:20px; float:right;">
+    <svg height="40" width="150">
+        <rect id="shape" height="40" width="150" />
+        <div id="text">
+            @Html.ActionLink("返回至商品列表", "OrderList", new { @class = "spot" })
+        </div>
+    </svg>
+</div>
